@@ -1,5 +1,6 @@
-package aki.pvnghe.unittestapi
+package aki.pvnghe.unittestapi.main
 
+import aki.pvnghe.unittestapi.R
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 

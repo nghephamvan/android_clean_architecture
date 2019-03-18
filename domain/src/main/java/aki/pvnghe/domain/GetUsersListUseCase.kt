@@ -1,13 +1,13 @@
 package aki.pvnghe.domain
 
-import aki.pvnghe.data.repository.UserRepository
 import aki.pvnghe.domain.model.User
 import aki.pvnghe.domain.usecase.UseCase
+import aki.pvnghe.data.repository.UserRepository
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetArticlesListUseCase @Inject constructor(private val userRepository: UserRepository,
+class GetUsersListUseCase @Inject constructor(private val userRepository: UserRepository,
                                                  subscribeScheduler: Scheduler,
                                                  postExecutionScheduler: Scheduler
 ) : UseCase<List<User>, Unit>(subscribeScheduler, postExecutionScheduler) {

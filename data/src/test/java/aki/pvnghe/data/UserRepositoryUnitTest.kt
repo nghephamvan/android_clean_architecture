@@ -3,20 +3,16 @@ package aki.pvnghe.data
 import aki.pvnghe.data.model.User
 import aki.pvnghe.data.model.UsersList
 import aki.pvnghe.data.repository.UserRepository
-import aki.pvnghe.data.repository.UserRepositoryImpl
 import aki.pvnghe.data.service.GithubUserService
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Assert
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.PowerMockRunner
 
 @PrepareForTest(User::class, UsersList::class)
 class UserRepositoryUnitTest {
@@ -48,7 +44,7 @@ class UserRepositoryUnitTest {
         `when`(userList.items).thenReturn(users)
         `when`(githubUserService.searchGithubUsers(USER_LOGIN_NGHEPHAMVAN)).thenReturn(Single.just(userList))
 
-        userRepository = UserRepositoryImpl(githubUserService)
+        userRepository = UserRepository(githubUserService)
     }
 
     @Test

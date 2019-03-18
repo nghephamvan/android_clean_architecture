@@ -94,4 +94,15 @@ data class User(
     @SerializedName("updated_at")
     @Expose
     var updatedAt: String? = null
-)
+) {
+    constructor(userLogin: String, name: String, avatarUrl: String, bio: String) : this() {
+        this.login = userLogin
+        this.name = name
+        this.avatarUrl = avatarUrl
+        this.bio = bio
+    }
+
+    constructor(userLogin: String) : this() {
+        this.login = userLogin
+    }
+}

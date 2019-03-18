@@ -26,9 +26,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':data')
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.code.gson:gson:${rootProject.ext.gson_version}"
+    implementation "com.google.dagger:dagger:${rootProject.ext.dagger2_vesion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjava2_version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroid_version}"
+    testImplementation "junit:junit:${rootProject.ext.junit_version}"
+    testImplementation "org.powermock:powermock-module-junit4:${rootProject.ext.powermock_version}"
+    testImplementation "org.powermock:powermock-api-mockito2:${rootProject.ext.powermock_version}"
+    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito_version}"
 }

@@ -34,4 +34,8 @@ dependencies {
     testImplementation "org.powermock:powermock-module-junit4:${rootProject.ext.powermock_version}"
     testImplementation "org.powermock:powermock-api-mockito2:${rootProject.ext.powermock_version}"
     testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito_version}"
+
+    testImplementation "org.powermock:powermock-api-mockito:$powermock_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
 }

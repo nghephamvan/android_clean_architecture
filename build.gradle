@@ -41,12 +41,11 @@ allprojects {
         rxandroid_version = "2.0.2"
         junit_version = "4.12"
         // Unit test
-        mockito_version = "2.21.0"
         powermock_version = "1.7.1"
         support_library_test_runner_version = "1.0.2"
         espresso_version = "3.0.2"
         mockwebserver_version = "3.11.0"
-
+        mockito_version = "2.8.9"
         kotlinMockito = '2.10.0'
     }
 }

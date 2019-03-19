@@ -2,7 +2,6 @@ package aki.pvnghe.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
 
 data class UsersList(
     @SerializedName("total_count")
@@ -13,5 +12,4 @@ data class UsersList(
     var incompleteResults: Boolean? = null,
     @SerializedName("items")
     @Expose
-    var items: ArrayList<User>? = null
-)
+    var items: List<User>? = null)

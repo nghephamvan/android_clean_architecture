@@ -10,6 +10,9 @@ data class User(
     @SerializedName("id")
     @Expose
     var id: Int? = null,
+    @SerializedName("node_id")
+    @Expose
+    var node_id: String? = null,
     @SerializedName("avatar_url")
     @Expose
     var avatarUrl: String? = null,
@@ -55,6 +58,9 @@ data class User(
     @SerializedName("site_admin")
     @Expose
     var siteAdmin: Boolean? = null,
+    @SerializedName("score")
+    @Expose
+    var score: Double? = null,
     @SerializedName("name")
     @Expose
     var name: String? = null,

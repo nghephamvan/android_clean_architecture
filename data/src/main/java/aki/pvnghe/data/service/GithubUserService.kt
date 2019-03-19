@@ -8,7 +8,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GithubUserService {
-    @GET("/search/users?per_page=2")
+    @GET("/search/users?per_page=10")
     fun searchGithubUsers(@Query("q") searchTerm: String?): Single<UsersList>
 
     @GET("/users/{username}")

@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class UsersPresenter @Inject constructor(private val getUsersListUseCase: GetUsersListUseCase) : BasePresenter<UsersView>() {
 
-    private val SEARCH_KEY = "nghepham"
+    private val SEARCH_KEY = "nghe"
 
     override fun initialise() {
         getView()?.initialiseView()

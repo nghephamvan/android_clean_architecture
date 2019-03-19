@@ -18,6 +18,6 @@ class App : Application() {
     }
 
     private fun initInjector() {
-//        applicationComponent.inject(this)
+        applicationComponent.inject(this)
     }
 }

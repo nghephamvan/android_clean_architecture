@@ -32,7 +32,7 @@ class NetworkModule {
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl("https://api.github.com/")
+                .baseUrl("https://api.github.com")
                 .client(okHttpClient)
                 .build()
 
@@ -41,5 +41,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideEndpoint(): GithubUserService = userService
+    internal fun provideUserService(): GithubUserService = userService
 }

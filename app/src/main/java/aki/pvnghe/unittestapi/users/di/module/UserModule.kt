@@ -10,5 +10,5 @@ import dagger.Provides
 class UserModule {
     @PerActivity
     @Provides
-    internal fun provideArticlesPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
+    internal fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
 }

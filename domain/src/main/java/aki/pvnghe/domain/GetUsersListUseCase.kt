@@ -12,7 +12,7 @@ class GetUsersListUseCase @Inject constructor(private val userRepository: UserRe
                                                  postExecutionScheduler: Scheduler
 ) : UseCase<List<User>, Unit>(subscribeScheduler, postExecutionScheduler) {
 
-    override fun buildUseCaseSingle(searchTerm: String?, params: Unit?): Single<List<User>> = userRepository.searchUsers(searchTerm)
+    override fun buildUseCaseSingle(searchTerm: String, params: Unit?): Single<List<User>> = userRepository.searchUsers(searchTerm)
         .map {
             it.map { User(it.login, it.name, it.avatarUrl, it.bio) }
         }

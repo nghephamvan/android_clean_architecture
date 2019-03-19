@@ -24,6 +24,6 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    internal fun provideGetArticlesListUseCase(userRepository: UserRepository , @Named("ioScheduler") ioScheduler: Scheduler, @Named("mainThreadScheduler") mainThreadScheduler: Scheduler): GetUsersListUseCase =
+    internal fun provideGetUsersListUseCase(userRepository: UserRepository, @Named("ioScheduler") ioScheduler: Scheduler, @Named("mainThreadScheduler") mainThreadScheduler: Scheduler): GetUsersListUseCase =
             GetUsersListUseCase(userRepository, ioScheduler, mainThreadScheduler)
 }

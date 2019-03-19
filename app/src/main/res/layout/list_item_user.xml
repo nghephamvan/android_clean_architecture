@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.AppCompat.Button.Borderless"
-    android:textAlignment="textStart"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAllCaps="false"/>
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:padding="5dp"
+        android:id="@+id/listview_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/app_name"/>
+
+    <Button
+        android:id="@+id/btn_item"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textAlignment="textStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

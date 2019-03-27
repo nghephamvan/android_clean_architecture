@@ -2,13 +2,8 @@ package aki.pvnghe.mvp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import javax.inject.Inject
 
-
-abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
-
-    @Inject
-    lateinit var presenter: P
+abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract fun getLayout(): Int
     protected abstract fun initInjector()
@@ -17,17 +12,5 @@ abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         initInjector()
-        initPresenter()
-    }
-
-    private fun initPresenter() {
-        presenter.attachView(this)
-        presenter.initialise()
-    }
-
-    override fun onDestroy() {
-        presenter.disposeSubscriptions()
-        presenter.detachView()
-        super.onDestroy()
     }
 }

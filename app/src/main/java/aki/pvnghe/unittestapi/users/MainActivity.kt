@@ -1,31 +1,38 @@
 package aki.pvnghe.unittestapi.users
 
-import aki.pvnghe.domain.model.User
 import aki.pvnghe.mvp.BaseActivity
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.R
-import aki.pvnghe.unittestapi.users.di.component.DaggerUsersComponent
-import android.support.v7.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import aki.pvnghe.unittestapi.users.di.component.DaggerUsersActivityComponent
 
-class MainActivity : BaseActivity<UsersPresenter>(), UsersView {
+class MainActivity : BaseActivity() {
     override fun getLayout(): Int = R.layout.activity_main
 
     override fun initInjector() {
-        DaggerUsersComponent.builder()
+        DaggerUsersActivityComponent.builder()
                 .appComponent((application as App).applicationComponent)
                 .build()
                 .inject(this)
+
+        showUsersFragment()
     }
 
-    override fun initialiseView() {
-        user_list_recycler_view.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MainActivity)
+    override fun onBackPressed() {
+        val fragmentManager = supportFragmentManager
+        val fragment = fragmentManager.findFragmentByTag(UsersFragment.TAG)
+
+        if (fragment == null) {
+            super.onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack()
         }
-    }
 
-    override fun showUserList(users: List<User>) {
-        user_list_recycler_view.adapter = UsersAdapter(this, users)
+        this.finish()
+    }
+    private fun showUsersFragment() {
+        supportFragmentManager.beginTransaction()
+            .disallowAddToBackStack()
+            .replace(R.id.frame, UsersFragment().newInstance(), UsersFragment.TAG)
+            .commit()
     }
 }

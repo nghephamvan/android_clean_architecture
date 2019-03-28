@@ -11,7 +11,6 @@ class UsersPresenter @Inject constructor(private val getUsersListUseCase: GetUse
     private val SEARCH_KEY = "nghe"
 
     override fun initialise() {
-        getView()?.initialiseView()
         getUsersListUseCase.execute(UsersListObserver(this), searchTerm = SEARCH_KEY)
     }
 
@@ -20,6 +19,7 @@ class UsersPresenter @Inject constructor(private val getUsersListUseCase: GetUse
     }
 
     fun showUserList(users: List<User>) {
+        getView()?.initialiseView()
         getView()?.showUserList(users)
     }
 }

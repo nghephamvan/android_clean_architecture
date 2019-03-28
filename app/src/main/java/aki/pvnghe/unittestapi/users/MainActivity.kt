@@ -6,13 +6,14 @@ import aki.pvnghe.unittestapi.R
 import aki.pvnghe.unittestapi.users.di.component.DaggerUsersActivityComponent
 
 class MainActivity : BaseActivity() {
+
     override fun getLayout(): Int = R.layout.activity_main
 
     override fun initInjector() {
         DaggerUsersActivityComponent.builder()
-                .appComponent((application as App).applicationComponent)
-                .build()
-                .inject(this)
+            .appComponent((application as App).applicationComponent)
+            .build()
+            .inject(this)
 
         showUsersFragment()
     }

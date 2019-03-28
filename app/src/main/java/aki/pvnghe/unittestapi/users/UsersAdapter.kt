@@ -22,13 +22,9 @@ class UsersAdapter(private val context: Context, private val users: List<User>) 
         val button = view.btn_item
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context)
-                .inflate(R.layout.list_item_user, parent, false) as View
-
-
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater.from(context).inflate(R.layout.list_item_user, parent, false)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

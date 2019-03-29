@@ -2,7 +2,7 @@ package aki.pvnghe.unittestapi.users
 
 import aki.pvnghe.domain.GetUsersListUseCase
 import aki.pvnghe.domain.model.User
-import aki.pvnghe.mvp.BasePresenter
+import aki.pvnghe.unittestapi.baseview.BasePresenter
 import javax.inject.Inject
 
 

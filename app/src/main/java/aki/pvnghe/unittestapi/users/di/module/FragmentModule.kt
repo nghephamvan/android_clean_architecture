@@ -1,15 +1,29 @@
 package aki.pvnghe.unittestapi.users.di.module
 
 import aki.pvnghe.domain.GetUsersListUseCase
-import aki.pvnghe.mvp.di.scope.PerFragment
+import aki.pvnghe.unittestapi.di.module.view.BaseFragmentModule
+import aki.pvnghe.unittestapi.di.scope.PerFragment
+import aki.pvnghe.unittestapi.users.UsersFragment
 import aki.pvnghe.unittestapi.users.UsersPresenter
+import aki.pvnghe.unittestapi.users.UsersView
+import android.support.v4.app.Fragment
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import javax.inject.Named
 
-@Module
-class FragmentModule {
+@Module(includes = [BaseFragmentModule::class])
+abstract class FragmentModule {
 
-    @Provides
+    @Binds
+    @Named(BaseFragmentModule.FRAGMENT)
     @PerFragment
-    internal fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
+    abstract fun fragment(usersFragment: UsersFragment) : Fragment
+
+    @Binds
+    @PerFragment
+    abstract fun provideUsersView(usersFragment: UsersFragment) : UsersView
+
+    @Binds
+    @PerFragment
+    fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
 }

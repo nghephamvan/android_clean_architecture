@@ -41,5 +41,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideUserService(): GithubUserService = userService
+    fun provideUserService(): GithubUserService = userService
 }

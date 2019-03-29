@@ -1,23 +1,15 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.unittestapi.di.component.AppComponent
 import aki.pvnghe.unittestapi.di.component.DaggerAppComponent
-import aki.pvnghe.unittestapi.di.module.AppModule
-import android.app.Application
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import dagger.android.HasActivityInjector
 
-class App : Application() {
-    val applicationComponent: AppComponent by lazy {
-        DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
-    }
+class App : DaggerApplication(), HasActivityInjector {
 
-    override fun onCreate() {
-        super.onCreate()
-        initInjector()
-    }
-
-    private fun initInjector() {
-        applicationComponent.inject(this)
+    override fun applicationInjector(): AndroidInjector<out App> {
+        val appComponent = DaggerAppComponent.builder().create(this)
+        appComponent.inject(this)
+        return appComponent
     }
 }

@@ -31,10 +31,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':data')
     implementation project(path: ':domain')
-    implementation project(path: ':mvp')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:support-v4:$support_library_version"
     implementation "com.android.support:recyclerview-v7:$support_library_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
@@ -44,7 +44,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
 
     implementation "com.google.dagger:dagger:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_vesion"
     kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
 
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"

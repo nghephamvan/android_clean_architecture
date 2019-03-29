@@ -1,17 +1,19 @@
-package aki.pvnghe.mvp
+package aki.pvnghe.unittestapi.baseview
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-abstract class BaseFragment<P: BasePresenter<Any>> : Fragment() {
+abstract class BaseFragment<P: BasePresenter<Any>> : Fragment(), HasSupportFragmentInjector {
     @Inject lateinit var presenter: P
 
     protected abstract fun getLayout(): Int
-    protected abstract fun initInjector()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         inflater.inflate(getLayout(), container, false)
@@ -19,8 +21,8 @@ abstract class BaseFragment<P: BasePresenter<Any>> : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
-        initInjector()
         initPresenter()
     }
 
@@ -33,5 +35,9 @@ abstract class BaseFragment<P: BasePresenter<Any>> : Fragment() {
         presenter.disposeSubscriptions()
         presenter.detachView()
         super.onDestroy()
+    }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

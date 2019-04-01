@@ -1,8 +1,6 @@
 package aki.pvnghe.unittestapi.baseview
 
-import aki.pvnghe.unittestapi.R
-import aki.pvnghe.unittestapi.di.module.view.BaseActivityModule
-import aki.pvnghe.unittestapi.users.UsersFragment
+import aki.pvnghe.unittestapi.di.module.view.Constants.ACTIVITY_FRAGMENT_MANAGER
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
@@ -20,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     protected abstract fun getLayout(): Int
 
     @Inject
-    @Named(BaseActivityModule.ACTIVITY_FRAGMENT_MANAGER)
+    @Named(ACTIVITY_FRAGMENT_MANAGER)
     lateinit var fragmentManager : FragmentManager
 
     @Inject
@@ -33,16 +31,14 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(getLayout())
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return fragmentInjector
-    }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
     override fun onBackPressed() {
         super.onBackPressed()
     }
 
     fun addFragment(@IdRes layoutIdRes: Int, fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
+        fragmentManager.beginTransaction()
             .disallowAddToBackStack()
             .replace(layoutIdRes, fragment, fragment::class.java.simpleName)
             .commit()

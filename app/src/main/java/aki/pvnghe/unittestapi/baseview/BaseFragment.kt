@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 abstract class BaseFragment<P: BasePresenter<Any>> : Fragment(), HasSupportFragmentInjector {
     @Inject lateinit var presenter: P
+    @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     protected abstract fun getLayout(): Int
 
@@ -37,7 +39,5 @@ abstract class BaseFragment<P: BasePresenter<Any>> : Fragment(), HasSupportFragm
         super.onDestroy()
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = childFragmentInjector
 }

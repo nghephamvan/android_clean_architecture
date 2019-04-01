@@ -24,8 +24,8 @@ abstract class ActivityModule {
     @PerActivity
     abstract fun activity(mainactivity: MainActivity) : Activity
 
-    @Binds
-    @PerFragment
-    fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
+//    @Binds
+//    @PerFragment
+//    abstract fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) : UsersPresenter
 
 }

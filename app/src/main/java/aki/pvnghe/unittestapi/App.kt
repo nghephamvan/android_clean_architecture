@@ -6,10 +6,11 @@ import dagger.android.DaggerApplication
 import dagger.android.HasActivityInjector
 
 class App : DaggerApplication(), HasActivityInjector {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().create(this)
+    }
 
-    override fun applicationInjector(): AndroidInjector<out App> {
-        val appComponent = DaggerAppComponent.builder().create(this)
-        appComponent.inject(this)
-        return appComponent
+    override fun onCreate() {
+        super.onCreate()
     }
 }

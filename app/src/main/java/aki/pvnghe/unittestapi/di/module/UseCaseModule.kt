@@ -15,15 +15,15 @@ class UseCaseModule {
     @Provides
     @Singleton
     @Named("ioScheduler")
-    internal fun provideIoScheduler() = Schedulers.io()
+    fun provideIoScheduler() = Schedulers.io()
 
     @Provides
     @Singleton
     @Named("mainThreadScheduler")
-    internal fun provideMainThreadScheduler() = AndroidSchedulers.mainThread()
+    fun provideMainThreadScheduler() = AndroidSchedulers.mainThread()
 
     @Provides
     @Singleton
-    internal fun provideGetUsersListUseCase(userRepository: UserRepository, @Named("ioScheduler") ioScheduler: Scheduler, @Named("mainThreadScheduler") mainThreadScheduler: Scheduler): GetUsersListUseCase =
+    fun provideGetUsersListUseCase(userRepository: UserRepository, @Named("ioScheduler") ioScheduler: Scheduler, @Named("mainThreadScheduler") mainThreadScheduler: Scheduler): GetUsersListUseCase =
             GetUsersListUseCase(userRepository, ioScheduler, mainThreadScheduler)
 }

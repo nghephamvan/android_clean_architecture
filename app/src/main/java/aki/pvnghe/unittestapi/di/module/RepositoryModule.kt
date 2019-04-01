@@ -10,5 +10,5 @@ import javax.inject.Singleton
 class RepositoryModule {
   @Provides
   @Singleton
-  internal fun provideUserRepository(githubUserService: GithubUserService): UserRepository = UserRepository(githubUserService)
+  fun provideUserRepository(githubUserService: GithubUserService): UserRepository = UserRepository(githubUserService)
 }

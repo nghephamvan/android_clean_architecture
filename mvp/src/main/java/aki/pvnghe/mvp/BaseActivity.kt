@@ -14,9 +14,9 @@ abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
     protected abstract fun initInjector()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initInjector()
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
-        initInjector()
         initPresenter()
     }
 

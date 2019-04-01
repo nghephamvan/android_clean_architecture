@@ -1,22 +1,22 @@
 package aki.pvnghe.unittestapi.di.component
 
-import aki.pvnghe.data.service.GithubUserService
-import aki.pvnghe.domain.GetUsersListUseCase
+import aki.pvnghe.data.retrofit.module.RetrofitModule
+import aki.pvnghe.data.service.module.ServiceApiModule
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.di.module.AppModule
-import aki.pvnghe.unittestapi.di.module.NetworkModule
-import aki.pvnghe.unittestapi.di.module.RepositoryModule
+import aki.pvnghe.data.repository.module.RepositoryModule
 import aki.pvnghe.unittestapi.di.module.UseCaseModule
-import android.content.Context
+import aki.pvnghe.unittestapi.users.module.UserModule
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, NetworkModule::class, RepositoryModule::class, UseCaseModule::class])
-interface AppComponent {
-    fun inject(app: App)
-    fun getApplicationContext(): Context
-    fun getUserService(): GithubUserService
-
-    fun getUsersListUseCase(): GetUsersListUseCase
+@Component(modules = [AndroidInjectionModule::class, AppModule::class, RetrofitModule::class,
+    ServiceApiModule::class, RepositoryModule::class, UseCaseModule::class, UserModule::class])
+interface AppComponent : AndroidInjector<App> {
+    @Component.Builder
+    abstract class Builder : AndroidInjector.Builder<App>() {
+    }
 }

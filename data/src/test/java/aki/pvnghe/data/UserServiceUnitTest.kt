@@ -2,8 +2,9 @@ package aki.pvnghe.data
 
 import aki.pvnghe.data.model.User
 import aki.pvnghe.data.model.UsersList
-import aki.pvnghe.data.repository.UserRepository
-import aki.pvnghe.data.service.GithubUserService
+import aki.pvnghe.data.service.user.UserApi
+import aki.pvnghe.data.service.user.UserService
+import aki.pvnghe.data.service.user.UserServiceImpl
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Before
@@ -17,16 +18,16 @@ import org.powermock.modules.junit4.PowerMockRunner
 
 @RunWith(PowerMockRunner::class)
 @PrepareForTest(UsersList::class, User::class)
-class UserRepositoryUnitTest {
+class UserServiceUnitTest {
 
     private val USER_LOGIN_NGHEPHAMVAN = "nghephamvan"
     private val USER_LOGIN_2_NGHEPHAM = "nghepham97"
 
 
-    lateinit var userRepository: UserRepository
+    lateinit var userService: UserService
 
     @Mock
-    lateinit var userService: GithubUserService
+    lateinit var userApi: UserApi
 
     @Mock
     lateinit var usersList: UsersList
@@ -41,18 +42,18 @@ class UserRepositoryUnitTest {
         users = listOf(user)
 
         `when`(usersList.items)
-            .thenReturn(users)
-        `when`(userService.searchGithubUsers(USER_LOGIN_NGHEPHAMVAN))
-            .thenReturn(Single.just(usersList))
+                .thenReturn(users)
+        `when`(userApi.searchGithubUsers(USER_LOGIN_NGHEPHAMVAN))
+                .thenReturn(Single.just(usersList))
 
-        userRepository = UserRepository(userService)
+        userService = UserServiceImpl(userApi)
     }
 
     @Test
     fun `should map users field to the root level`() {
         val observer = TestObserver<List<User>>()
-        userRepository.searchUsers(USER_LOGIN_NGHEPHAMVAN)
-            .subscribe(observer)
+        userService.searchUsers(USER_LOGIN_NGHEPHAMVAN)
+                .subscribe(observer)
         observer.assertNoErrors()
         observer.assertComplete()
         observer.assertValueAt(0, users)

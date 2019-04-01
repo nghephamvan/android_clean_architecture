@@ -1,6 +1,6 @@
 package aki.pvnghe.domain
 
-import aki.pvnghe.data.repository.UserRepository
+import aki.pvnghe.data.service.user.UserService
 import aki.pvnghe.domain.model.User
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
@@ -16,7 +16,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
 
 @RunWith(PowerMockRunner::class)
-@PrepareForTest(UserRepository::class)
+@PrepareForTest(UserService::class)
 class GetUsersListUseCaseTest {
     private val SEARCH_KEY = "nghepham"
     private val USER_LOGIN_NGHEPHAMVAN = "nghephamvan"
@@ -24,21 +24,21 @@ class GetUsersListUseCaseTest {
     private lateinit var getUsersListUseCase: GetUsersListUseCase
 
     @Mock
-    lateinit var userRepository: UserRepository
+    lateinit var userService: UserService
 
     private val users = listOf(aki.pvnghe.data.model.User(
-        login = USER_LOGIN_NGHEPHAMVAN,
-        name = "Nghe Pham",
-        avatarUrl = "https://avatars3.githubusercontent.com/u/9383651?v=4",
-        bio = "Android developer"
+            login = USER_LOGIN_NGHEPHAMVAN,
+            name = "Nghe Pham",
+            avatarUrl = "https://avatars3.githubusercontent.com/u/9383651?v=4",
+            bio = "Android developer"
     ))
 
     @Before
     fun setUp() {
-        `when`(userRepository.searchUsers(SEARCH_KEY))
-            .thenReturn(Single.just(users))
+        `when`(userService.searchUsers(SEARCH_KEY))
+                .thenReturn(Single.just(users))
 
-        getUsersListUseCase = GetUsersListUseCase(userRepository, Schedulers.trampoline(), Schedulers.trampoline())
+        getUsersListUseCase = GetUsersListUseCase(userService, Schedulers.trampoline(), Schedulers.trampoline())
     }
 
     @After

@@ -1,14 +1,23 @@
 package aki.pvnghe.unittestapi.di.module
 
+import aki.pvnghe.mvp.di.scope.PerActivity
+import aki.pvnghe.unittestapi.App
+import aki.pvnghe.unittestapi.users.MainActivity
+import aki.pvnghe.unittestapi.users.module.UserModule
 import android.app.Application
-import android.content.Context
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 import javax.inject.Singleton
 
 @Module
-class AppModule(private val app: Application) {
-    @Provides
+abstract class AppModule {
+
+    @Binds
     @Singleton
-    internal fun provideAppContext(): Context = app
+    abstract fun application(app: App): Application
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = [UserModule::class])
+    internal abstract fun contributeActivityInjector(): MainActivity
 }

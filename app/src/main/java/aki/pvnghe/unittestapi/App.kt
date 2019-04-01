@@ -1,23 +1,28 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.unittestapi.di.component.AppComponent
+import aki.pvnghe.data.repository.RealmDatabase
 import aki.pvnghe.unittestapi.di.component.DaggerAppComponent
-import aki.pvnghe.unittestapi.di.module.AppModule
-import android.app.Application
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import dagger.android.HasActivityInjector
 
-class App : Application() {
-    val applicationComponent: AppComponent by lazy {
-        DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
-    }
+
+class App : DaggerApplication(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        initInjector()
+        DaggerAppComponent.builder().create(this).inject(this)
+        RealmDatabase.initializeRealm(this)
     }
 
-    private fun initInjector() {
-        applicationComponent.inject(this)
+    override fun applicationInjector(): AndroidInjector<App> {
+        return DaggerAppComponent.builder().create(this)
     }
+
+    /*@Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
+        return dispatchingAndroidInjector
+    }*/
 }

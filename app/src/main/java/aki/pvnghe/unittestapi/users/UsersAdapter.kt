@@ -11,8 +11,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.list_item_user.view.*
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import kotlinx.android.synthetic.main.list_item_user.view.*
 
 class UsersAdapter(private val context: Context, private val users: List<User>) :
         RecyclerView.Adapter<UsersAdapter.ViewHolder>() {

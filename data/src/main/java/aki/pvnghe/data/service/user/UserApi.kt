@@ -1,4 +1,4 @@
-package aki.pvnghe.data.service
+package aki.pvnghe.data.service.user
 
 import aki.pvnghe.data.model.User
 import aki.pvnghe.data.model.UsersList
@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface GithubUserService {
+interface UserApi {
     @GET("/search/users?per_page=10")
     fun searchGithubUsers(@Query("q") searchTerm: String?): Single<UsersList>
 

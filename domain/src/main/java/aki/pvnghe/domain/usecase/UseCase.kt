@@ -15,8 +15,8 @@ abstract class UseCase<T, in Params>(private val subscribeScheduler: Scheduler,
 
     fun execute(observer: SingleObserver<T>, searchTerm: String, params: Params? = null) {
         val observable: Single<T> = this.buildUseCaseSingle(searchTerm, params)
-            .subscribeOn(subscribeScheduler)
-            .observeOn(postExecutionScheduler)
+                .subscribeOn(subscribeScheduler)
+                .observeOn(postExecutionScheduler)
         (observable.subscribeWith(observer) as? Disposable)?.let {
             disposables.add(it)
         }

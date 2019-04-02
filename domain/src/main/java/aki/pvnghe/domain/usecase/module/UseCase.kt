@@ -1,4 +1,4 @@
-package aki.pvnghe.domain.usecase
+package aki.pvnghe.domain.usecase.module
 
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -11,10 +11,10 @@ abstract class UseCase<T, in Params>(private val subscribeScheduler: Scheduler,
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
-    abstract fun buildUseCaseSingle(searchTerm: String, params: Params?): Single<T>
+    abstract fun buildUseCaseSingle(params: Params?): Single<T>
 
-    fun execute(observer: SingleObserver<T>, searchTerm: String, params: Params? = null) {
-        val observable: Single<T> = this.buildUseCaseSingle(searchTerm, params)
+    fun execute(observer: SingleObserver<T>, params: Params? = null) {
+        val observable: Single<T> = this.buildUseCaseSingle(params)
                 .subscribeOn(subscribeScheduler)
                 .observeOn(postExecutionScheduler)
         (observable.subscribeWith(observer) as? Disposable)?.let {

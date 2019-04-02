@@ -1,8 +1,6 @@
-package aki.pvnghe.unittestapi.users
+package aki.pvnghe.unittestapi.users.fragment
 
-import aki.pvnghe.data.retrofit.NetworkException
 import aki.pvnghe.domain.model.User
-import android.util.Log
 import io.reactivex.observers.DisposableSingleObserver
 
 class UsersListObserver(private val presenter: UsersPresenter) : DisposableSingleObserver<List<User>>() {

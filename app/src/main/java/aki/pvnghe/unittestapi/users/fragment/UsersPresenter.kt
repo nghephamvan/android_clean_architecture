@@ -1,7 +1,7 @@
-package aki.pvnghe.unittestapi.users
+package aki.pvnghe.unittestapi.users.fragment
 
-import aki.pvnghe.domain.GetUsersListUseCase
 import aki.pvnghe.domain.model.User
+import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import aki.pvnghe.unittestapi.baseview.BasePresenter
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ class UsersPresenter @Inject constructor(private val getUsersListUseCase: GetUse
 
     override fun initialise() {
         getView()?.initialiseView()
-        getUsersListUseCase.execute(UsersListObserver(this), searchTerm = SEARCH_KEY)
+        getUsersListUseCase.execute(observer = UsersListObserver(this), params = SEARCH_KEY)
     }
 
     override fun disposeSubscriptions() {

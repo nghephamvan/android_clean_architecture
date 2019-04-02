@@ -1,7 +1,7 @@
-package aki.pvnghe.unittestapi.di.module
+package aki.pvnghe.domain.usecase.module
 
 import aki.pvnghe.data.service.user.UserService
-import aki.pvnghe.domain.GetUsersListUseCase
+import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler

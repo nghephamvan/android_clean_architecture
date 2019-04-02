@@ -1,13 +1,13 @@
 package aki.pvnghe.unittestapi.users.module
 
-import aki.pvnghe.domain.GetUsersListUseCase
+import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import aki.pvnghe.unittestapi.scope.PerFragment
-import aki.pvnghe.unittestapi.users.UsersPresenter
+import aki.pvnghe.unittestapi.users.fragment.UsersPresenter
 import dagger.Module
 import dagger.Provides
 
 @Module
-class UserModule {
+class UsersFragmentModule {
 
     @PerFragment
     @Provides

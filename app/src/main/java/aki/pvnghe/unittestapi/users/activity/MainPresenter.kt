@@ -1,4 +1,4 @@
-package aki.pvnghe.unittestapi.users
+package aki.pvnghe.unittestapi.users.activity
 
 import aki.pvnghe.unittestapi.baseview.BasePresenter
 

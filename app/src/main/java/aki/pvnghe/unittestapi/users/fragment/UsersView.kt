@@ -1,4 +1,4 @@
-package aki.pvnghe.unittestapi.users
+package aki.pvnghe.unittestapi.users.fragment
 
 import aki.pvnghe.domain.model.User
 

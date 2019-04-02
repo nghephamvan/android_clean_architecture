@@ -1,9 +1,9 @@
-package aki.pvnghe.unittestapi.users
+package aki.pvnghe.unittestapi.users.activity
 
 import aki.pvnghe.unittestapi.baseview.BaseActivity
 import aki.pvnghe.unittestapi.R
+import aki.pvnghe.unittestapi.users.fragment.UsersFragment
 import android.os.Bundle
-import dagger.android.AndroidInjection
 
 class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
@@ -13,8 +13,8 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.frame, UsersFragment().newInstance())
-                .commitAllowingStateLoss()
+                    .add(R.id.frame, UsersFragment().newInstance())
+                    .commitAllowingStateLoss()
         }
     }
 

@@ -2,6 +2,7 @@ package aki.pvnghe.domain
 
 import aki.pvnghe.data.service.user.UserService
 import aki.pvnghe.domain.model.User
+import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers

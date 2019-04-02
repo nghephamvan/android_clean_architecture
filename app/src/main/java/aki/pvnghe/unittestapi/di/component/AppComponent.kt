@@ -17,6 +17,5 @@ import javax.inject.Singleton
     ServiceApiModule::class, RepositoryModule::class, UseCaseModule::class, UserModule::class])
 interface AppComponent : AndroidInjector<App> {
     @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<App>() {
-    }
+    abstract class Builder : AndroidInjector.Builder<App>()
 }

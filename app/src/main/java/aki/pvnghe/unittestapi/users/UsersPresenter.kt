@@ -2,7 +2,7 @@ package aki.pvnghe.unittestapi.users
 
 import aki.pvnghe.domain.GetUsersListUseCase
 import aki.pvnghe.domain.model.User
-import aki.pvnghe.mvp.BasePresenter
+import aki.pvnghe.unittestapi.baseview.BasePresenter
 import javax.inject.Inject
 
 
@@ -21,5 +21,9 @@ class UsersPresenter @Inject constructor(private val getUsersListUseCase: GetUse
 
     fun showUserList(users: List<User>) {
         getView()?.showUserList(users)
+    }
+
+    fun showErrors(error: String) {
+        getView()?.showError(error)
     }
 }

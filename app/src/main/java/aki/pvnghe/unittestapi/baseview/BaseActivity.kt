@@ -1,20 +1,17 @@
-package aki.pvnghe.mvp
+package aki.pvnghe.unittestapi.baseview
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 
-abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
+abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() {
 
-    @Inject
-    lateinit var presenter: P
+    @Inject lateinit var presenter: P
 
     protected abstract fun getLayout(): Int
-    protected abstract fun initInjector()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initInjector()
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         initPresenter()

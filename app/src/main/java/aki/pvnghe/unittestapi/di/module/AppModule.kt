@@ -1,8 +1,11 @@
 package aki.pvnghe.unittestapi.di.module
 
-import aki.pvnghe.mvp.di.scope.PerActivity
+import aki.pvnghe.unittestapi.scope.PerActivity
+import aki.pvnghe.unittestapi.scope.PerFragment
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.users.MainActivity
+import aki.pvnghe.unittestapi.users.UsersFragment
+import aki.pvnghe.unittestapi.users.module.MainActivityModule
 import aki.pvnghe.unittestapi.users.module.UserModule
 import android.app.Application
 import dagger.Binds
@@ -18,6 +21,10 @@ abstract class AppModule {
     abstract fun application(app: App): Application
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [UserModule::class])
+    @ContributesAndroidInjector(modules = [MainActivityModule::class])
     internal abstract fun contributeActivityInjector(): MainActivity
+
+    @PerFragment
+    @ContributesAndroidInjector(modules = [UserModule::class])
+    internal abstract fun contributeFragmentInjector(): UsersFragment
 }

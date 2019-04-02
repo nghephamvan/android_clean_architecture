@@ -1,27 +1,24 @@
 package aki.pvnghe.unittestapi.users
 
-import aki.pvnghe.domain.model.User
-import aki.pvnghe.mvp.BaseActivity
+import aki.pvnghe.unittestapi.baseview.BaseActivity
 import aki.pvnghe.unittestapi.R
-import android.support.v7.widget.LinearLayoutManager
+import android.os.Bundle
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<UsersPresenter>(), UsersView {
+class MainActivity : BaseActivity<MainPresenter>(), MainView {
+
     override fun getLayout(): Int = R.layout.activity_main
 
-    override fun initInjector() {
-        AndroidInjection.inject(this);
-    }
-
-    override fun initialiseView() {
-        user_list_recycler_view.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MainActivity)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.frame, UsersFragment().newInstance())
+                .commitAllowingStateLoss()
         }
     }
 
-    override fun showUserList(users: List<User>) {
-        user_list_recycler_view.adapter = UsersAdapter(this, users)
+    override fun initialiseView() {
+
     }
 }

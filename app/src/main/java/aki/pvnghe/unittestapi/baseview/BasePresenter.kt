@@ -1,4 +1,4 @@
-package aki.pvnghe.mvp
+package aki.pvnghe.unittestapi.baseview
 
 abstract class BasePresenter<out T> {
     private var view: T? = null

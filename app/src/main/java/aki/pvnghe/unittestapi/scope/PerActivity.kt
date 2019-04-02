@@ -1,4 +1,4 @@
-package aki.pvnghe.mvp.di.scope
+package aki.pvnghe.unittestapi.scope
 
 import javax.inject.Scope
 

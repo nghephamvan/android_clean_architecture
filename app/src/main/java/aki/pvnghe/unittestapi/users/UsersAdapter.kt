@@ -27,16 +27,13 @@ class UsersAdapter(private val context: Context, private val users: List<User>) 
         val view = LayoutInflater.from(context)
                 .inflate(R.layout.list_item_user, parent, false) as View
 
-
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         GlideApp.with(context)
-            .load(users.get(position).avatarUrl)
-            .placeholder(R.mipmap.ic_launcher)
-            .error(R.drawable.ic_launcher_background)
+            .load(users[position].avatarUrl)
             .transform(CircleCrop())
             .into(holder.image)
 

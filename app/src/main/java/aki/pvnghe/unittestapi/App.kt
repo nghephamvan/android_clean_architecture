@@ -11,7 +11,7 @@ import dagger.android.HasActivityInjector
 
 class App : DaggerApplication(), HasActivityInjector {
 
-    val applicationComponent by lazy {
+    private val applicationComponent: AndroidInjector<App> by lazy {
         DaggerAppComponent.builder().create(this)
     }
 

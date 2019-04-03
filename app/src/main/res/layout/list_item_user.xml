@@ -10,6 +10,7 @@
         android:id="@+id/listview_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher"
         android:contentDescription="@string/app_name"/>
 
     <Button

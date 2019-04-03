@@ -17,4 +17,3 @@ abstract class BasePresenter<out T> {
         view = null
     }
 }
-

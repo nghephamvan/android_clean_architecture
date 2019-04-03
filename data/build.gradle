@@ -1,6 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.realm:realm-gradle-plugin:5.10.0"
+    }
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -23,15 +34,31 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //https://github.com/google/dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
+
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+    //gson for retrofit
     implementation "com.google.code.gson:gson:$gson_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    // Compiler error if we use "implementation"
+    // error: [ComponentProcessor:MiscError] dagger.internal.codegen.ComponentProcessor
+    // was unable to process this interface because not all of its dependencies could be resolved.
+    // Check for compilation errors or a circular dependency with generated code.
+    api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    // Log for retrofit
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
 }

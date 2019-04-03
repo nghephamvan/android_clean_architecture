@@ -1,30 +1,25 @@
 package aki.pvnghe.unittestapi.baseview
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseFragment<P: BasePresenter<Any>> : Fragment(), HasSupportFragmentInjector {
+abstract class BaseFragment<P : BasePresenter<Any>> : DaggerFragment() {
+
     @Inject lateinit var presenter: P
-    @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     protected abstract fun getLayout(): Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        inflater.inflate(getLayout(), container, false)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(getLayout(), container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidSupportInjection.inject(this)
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initPresenter()
     }
 
@@ -39,5 +34,4 @@ abstract class BaseFragment<P: BasePresenter<Any>> : Fragment(), HasSupportFragm
         super.onDestroy()
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = childFragmentInjector
 }

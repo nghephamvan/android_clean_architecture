@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -21,7 +22,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -29,7 +29,12 @@ dependencies {
     implementation project(path: ':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //https://github.com/google/dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
+
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"

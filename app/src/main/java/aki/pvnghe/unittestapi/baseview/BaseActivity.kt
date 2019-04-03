@@ -1,46 +1,30 @@
 package aki.pvnghe.unittestapi.baseview
 
-import aki.pvnghe.unittestapi.di.module.view.Constants.ACTIVITY_FRAGMENT_MANAGER
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
-import javax.inject.Named
 
-abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
+
+abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() {
+
+    @Inject lateinit var presenter: P
 
     protected abstract fun getLayout(): Int
 
-    @Inject
-    @Named(ACTIVITY_FRAGMENT_MANAGER)
-    lateinit var fragmentManager : FragmentManager
-
-    @Inject
-    lateinit var fragmentInjector : DispatchingAndroidInjector<Fragment>
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
+        initPresenter()
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
-
-    override fun onBackPressed() {
-        super.onBackPressed()
+    private fun initPresenter() {
+        presenter.attachView(this)
+        presenter.initialise()
     }
 
-    fun addFragment(@IdRes layoutIdRes: Int, fragment: Fragment) {
-        fragmentManager.beginTransaction()
-            .disallowAddToBackStack()
-            .replace(layoutIdRes, fragment, fragment::class.java.simpleName)
-            .commit()
+    override fun onDestroy() {
+        presenter.disposeSubscriptions()
+        presenter.detachView()
+        super.onDestroy()
     }
 }

@@ -19,7 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -31,23 +31,18 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':data')
     implementation project(path: ':domain')
-    implementation project(path: ':mvp')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$support_library_version"
     implementation "com.android.support:recyclerview-v7:$support_library_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
-
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-
+    // Dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_vesion"
     kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
-
-    implementation "com.google.code.gson:gson:$gson_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
 
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
@@ -59,7 +54,6 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockito_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
     androidTestImplementation "com.android.support.test:runner:$support_library_test_runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
 }

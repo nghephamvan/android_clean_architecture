@@ -1,10 +1,10 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.domain.GetUsersListUseCase
+import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import aki.pvnghe.domain.model.User
-import aki.pvnghe.unittestapi.users.UsersListObserver
-import aki.pvnghe.unittestapi.users.UsersPresenter
-import aki.pvnghe.unittestapi.users.UsersView
+import aki.pvnghe.unittestapi.users.fragment.UsersListObserver
+import aki.pvnghe.unittestapi.users.fragment.UsersPresenter
+import aki.pvnghe.unittestapi.users.fragment.UsersView
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -54,7 +54,7 @@ class PresenterTest {
     @Test
     fun `should execute usecase when initialise is invoked`() {
         presenter.initialise()
-        verify(getUsersListUseCase).execute(any(UsersListObserver::class.java), anyString(), ArgumentMatchers.isNull())
+        verify(getUsersListUseCase).execute(any(UsersListObserver::class.java), anyString())
     }
 
     @Test

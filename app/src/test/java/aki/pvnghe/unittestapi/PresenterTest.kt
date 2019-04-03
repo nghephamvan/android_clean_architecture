@@ -54,7 +54,7 @@ class PresenterTest {
     @Test
     fun `should execute usecase when initialise is invoked`() {
         presenter.initialise()
-        verify(getUsersListUseCase).execute(any(UsersListObserver::class.java), anyString(), ArgumentMatchers.isNull())
+        verify(getUsersListUseCase).execute(any(UsersListObserver::class.java), anyString())
     }
 
     @Test

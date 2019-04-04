@@ -18,7 +18,7 @@ import org.powermock.modules.junit4.PowerMockRunner
 
 @RunWith(PowerMockRunner::class)
 @PrepareForTest(GetUsersListUseCase::class)
-class PresenterTest {
+class UsersPresenterTest {
     private lateinit var presenter: UsersPresenter
 
     @Suppress("UNKNOWN")

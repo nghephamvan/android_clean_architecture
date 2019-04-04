@@ -8,17 +8,18 @@ import android.os.Bundle
 class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
     override fun getLayout(): Int = R.layout.activity_main
+    private var instanceState : Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        instanceState = savedInstanceState
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.frame, UsersFragment().newInstance())
-                    .commitAllowingStateLoss()
-        }
     }
 
     override fun initialiseView() {
-
+        if (instanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.frame, UsersFragment().newInstance())
+                .commitAllowingStateLoss()
+        }
     }
 }

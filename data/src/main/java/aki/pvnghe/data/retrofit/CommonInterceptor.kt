@@ -1,9 +1,8 @@
 package aki.pvnghe.data.retrofit
 
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import okhttp3.*
-import okio.Buffer
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 import java.security.GeneralSecurityException
 import javax.net.ssl.SSLPeerUnverifiedException

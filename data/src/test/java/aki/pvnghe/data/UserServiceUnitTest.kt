@@ -41,10 +41,9 @@ class UserServiceUnitTest {
     fun setUp() {
         users = listOf(user)
 
-        `when`(usersList.items)
-                .thenReturn(users)
-        `when`(userApi.searchGithubUsers(USER_LOGIN_NGHEPHAMVAN))
-                .thenReturn(Single.just(usersList))
+        `when`(usersList.items).thenReturn(users)
+        `when`(userApi.searchGithubUsers(USER_LOGIN_NGHEPHAMVAN)).thenReturn(Single.just(usersList))
+        `when`(userApi.getUser(USER_LOGIN_NGHEPHAMVAN)).thenReturn(Single.just(user))
 
         userService = UserServiceImpl(userApi)
     }
@@ -57,5 +56,15 @@ class UserServiceUnitTest {
         observer.assertNoErrors()
         observer.assertComplete()
         observer.assertValueAt(0, users)
+    }
+
+    @Test
+    fun `should map user`() {
+        val observer = TestObserver<User>()
+        userService.getUser(USER_LOGIN_NGHEPHAMVAN)
+            .subscribe(observer)
+        observer.assertNoErrors()
+        observer.assertComplete()
+        observer.assertValue(user)
     }
 }

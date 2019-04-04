@@ -10,11 +10,11 @@ class UserRepositoryImpl : UserRepository {
     }
 
     override fun deleteAllUsers(callback: () -> Unit) {
-        val transaction = RealmDatabase.getRealmInstance()
+        val realm = RealmDatabase.getRealmInstance()
         try {
             //NOTE: java.lang.IllegalStateException: Callback cannot be delivered on current thread. Realm cannot be automatically updated on a thread without a looper.
             //This Error will happen if the app calls executeTransactionAsync when device's screen is off
-            transaction.executeTransactionAsync({
+            realm.executeTransactionAsync({
                 it.delete(User::class.java)
             }, {
                 callback.invoke()
@@ -25,16 +25,16 @@ class UserRepositoryImpl : UserRepository {
         } catch (e: Exception) {
             Log.d(TAG, "deleteAllUsers()", e)
         } finally {
-            transaction.close()
+            realm.close()
         }
     }
 
     override fun insertUsersList(usersList: List<User>?, callback: () -> Unit) {
         deleteAllUsers() {
             usersList?.let {
-                val transaction = RealmDatabase.getRealmInstance()
+                val realm = RealmDatabase.getRealmInstance()
                 try {
-                    transaction.executeTransactionAsync({
+                    realm.executeTransactionAsync({
                         it.insert(usersList)
                     }, {
                         callback.invoke()
@@ -45,11 +45,13 @@ class UserRepositoryImpl : UserRepository {
                 } catch (e: Exception) {
                     Log.d(TAG, "insertUsersList()", e)
                 } finally {
-                    transaction.close()
+                    realm.close()
                 }
             }
         }
     }
 
-
+    override fun getUsersList(): List<User> {
+        return RealmDatabase.getRealmInstance().where(User::class.java).findAll()
+    }
 }

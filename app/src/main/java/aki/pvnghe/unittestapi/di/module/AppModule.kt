@@ -20,6 +20,8 @@ abstract class AppModule {
     @Singleton
     abstract fun application(app: App): Application
 
+    //Multi-scoping Dagger components
+    //https://proandroiddev.com/multi-scoping-dagger-components-89b6f4bdb73b
     @PerActivity
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     internal abstract fun contributeActivityInjector(): MainActivity

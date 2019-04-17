@@ -1,7 +1,7 @@
 package aki.pvnghe.unittestapi.di.module
 
-import aki.pvnghe.unittestapi.scope.PerActivity
-import aki.pvnghe.unittestapi.scope.PerFragment
+import aki.pvnghe.data.scope.PerActivity
+import aki.pvnghe.data.scope.PerFragment
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.users.activity.MainActivity
 import aki.pvnghe.unittestapi.users.fragment.UsersFragment

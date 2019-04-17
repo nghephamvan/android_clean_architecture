@@ -1,4 +1,4 @@
-package aki.pvnghe.domain.usecase.module
+package aki.pvnghe.domain.usecase
 
 import io.reactivex.Scheduler
 import io.reactivex.Single

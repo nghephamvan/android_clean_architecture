@@ -41,6 +41,7 @@ class UsersFragment : BaseFragment<UsersPresenter>(), UsersView {
     }
 
     override fun showError(errorMessage: String) {
+        showProgress(false)
         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
 }

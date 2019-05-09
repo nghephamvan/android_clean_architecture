@@ -1,6 +1,6 @@
 package aki.pvnghe.unittestapi.users.module
 
-import aki.pvnghe.unittestapi.scope.PerActivity
+import aki.pvnghe.data.scope.PerActivity
 import aki.pvnghe.unittestapi.users.activity.MainPresenter
 import dagger.Module
 import dagger.Provides

@@ -7,7 +7,10 @@ import java.io.IOException
 import java.security.GeneralSecurityException
 import javax.net.ssl.SSLPeerUnverifiedException
 
-class CommonInterceptor(var networkMonitor: NetworkMonitor) : Interceptor {
+class CommonInterceptor(private var networkMonitor: NetworkMonitor) : Interceptor {
+    companion object {
+        var staticAuthorization: String? = null
+    }
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -29,6 +32,10 @@ class CommonInterceptor(var networkMonitor: NetworkMonitor) : Interceptor {
         return request.newBuilder()
                 .apply {
                     header("Content-Type", "application/json")
+                    staticAuthorization?.let {
+                        header("Authorization", it)
+                    }
+
                     method(request.method(), request.body()/*encryptRequestBody(requestBody)*/)
                 }.build()
     }

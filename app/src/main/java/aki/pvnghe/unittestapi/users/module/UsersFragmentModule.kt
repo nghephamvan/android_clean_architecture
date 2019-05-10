@@ -1,16 +1,16 @@
 package aki.pvnghe.unittestapi.users.module
 
+import aki.pvnghe.data.scope.FragmentScope
 import aki.pvnghe.domain.usecase.GetUsersListUseCase
-import aki.pvnghe.data.scope.PerFragment
-import aki.pvnghe.domain.usecase.module.UseCaseModule
+import aki.pvnghe.domain.usecase.module.GetUsersListUseCaseModule
 import aki.pvnghe.unittestapi.users.fragment.UsersPresenter
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [UseCaseModule::class])
+@Module(includes = [GetUsersListUseCaseModule::class])
 class UsersFragmentModule {
 
     @Provides
-    @PerFragment
+    @FragmentScope
     internal fun provideUsersPresenter(getUsersListUseCase: GetUsersListUseCase) = UsersPresenter(getUsersListUseCase)
 }

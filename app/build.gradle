@@ -8,19 +8,29 @@ android {
     defaultConfig {
         applicationId application_id
         minSdkVersion mini_sdk_version
-        targetSdkVersion compile_sdk_version
+        targetSdkVersion target_sdk_version
         versionCode version_code
         versionName version_name
         testInstrumentationRunner test_runner
     }
+    buildToolsVersion build_tools_version
+
     buildTypes {
-        release {
+        debug {
+            shrinkResources false
             minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '28.0.3'
 
+    //Fix issue: Invoke-customs are only supported starting with Android O
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -28,15 +38,26 @@ android {
 }
 
 dependencies {
+    //Default
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:recyclerview-v7:$support_library_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
-
+    //RecyclerView
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.android.support:design:$support_library_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:support-v4:$support_library_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    //RxAndroid RxJava2: Reuse api data layer
+    //implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    //implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     // Dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
     implementation "com.google.dagger:dagger-android:$dagger2_vesion"
@@ -44,11 +65,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
     kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
 
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-
+    //Unit test
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"

@@ -1,28 +1,24 @@
 package aki.pvnghe.domain.usecase.module
 
-import aki.pvnghe.data.scope.PerFragment
-import aki.pvnghe.data.service.module.ServiceApiModule
-import aki.pvnghe.data.service.user.UserService
-import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
-@Module(includes = [ServiceApiModule::class])
+@Module
 class UseCaseModule {
+    companion object {
+        const val RX_IO_SCHEDULER = "ioScheduler"
+        const val RX_MAIN_THREAD_SCHEDULER = "mainThreadScheduler"
+    }
+
+
     @Provides
-    @Named("ioScheduler")
+    @Named(RX_IO_SCHEDULER)
     internal fun provideIoScheduler() = Schedulers.io()
 
     @Provides
-    @Named("mainThreadScheduler")
+    @Named(RX_MAIN_THREAD_SCHEDULER)
     internal fun provideMainThreadScheduler() = AndroidSchedulers.mainThread()
-
-    @Provides
-    @PerFragment
-    internal fun provideGetUsersListUseCase(userService: UserService, @Named("ioScheduler") ioScheduler: Scheduler, @Named("mainThreadScheduler") mainThreadScheduler: Scheduler): GetUsersListUseCase =
-        GetUsersListUseCase(userService, ioScheduler, mainThreadScheduler)
 }

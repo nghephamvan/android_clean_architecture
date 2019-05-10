@@ -1,7 +1,8 @@
 package aki.pvnghe.unittestapi.di.module
 
-import aki.pvnghe.data.scope.PerActivity
-import aki.pvnghe.data.scope.PerFragment
+import aki.pvnghe.data.scope.ActivityScope
+import aki.pvnghe.data.scope.FragmentScope
+import aki.pvnghe.domain.usecase.module.UseCaseModule
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.users.activity.MainActivity
 import aki.pvnghe.unittestapi.users.fragment.UsersFragment
@@ -22,11 +23,11 @@ abstract class AppModule {
 
     //Multi-scoping Dagger components
     //https://proandroiddev.com/multi-scoping-dagger-components-89b6f4bdb73b
-    @PerActivity
+    @ActivityScope
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     internal abstract fun contributeActivityInjector(): MainActivity
 
-    @PerFragment
-    @ContributesAndroidInjector(modules = [UsersFragmentModule::class])
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [UsersFragmentModule::class, UseCaseModule::class])
     internal abstract fun contributeFragmentInjector(): UsersFragment
 }

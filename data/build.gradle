@@ -23,39 +23,44 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
 }
 
 dependencies {
+    //Default
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //https://github.com/google/dagger
+    //RxAndroid RxJava2
+    api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    // Dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
     implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_vesion"
     kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
     kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
-
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-
+    //Gson
+    implementation "com.google.code.gson:gson:$gson_version"
+    //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
-    //gson for retrofit
-    implementation "com.google.code.gson:gson:$gson_version"
-    // Compiler error if we use "implementation"
-    // error: [ComponentProcessor:MiscError] dagger.internal.codegen.ComponentProcessor
-    // was unable to process this interface because not all of its dependencies could be resolved.
-    // Check for compilation errors or a circular dependency with generated code.
+    //if we use "implementation", we cannot do Make Project: error - cannot access OkHttpClient
     api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
-    // Log for retrofit
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-
+    //Unit test
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"

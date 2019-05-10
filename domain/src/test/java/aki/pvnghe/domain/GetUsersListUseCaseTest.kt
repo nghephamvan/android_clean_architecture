@@ -1,6 +1,6 @@
 package aki.pvnghe.domain
 
-import aki.pvnghe.data.service.user.UserService
+import aki.pvnghe.data.service.getusers.UserService
 import aki.pvnghe.domain.model.User
 import aki.pvnghe.domain.usecase.GetUsersListUseCase
 import io.reactivex.Single

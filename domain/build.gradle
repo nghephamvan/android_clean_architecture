@@ -9,35 +9,43 @@ android {
     defaultConfig {
         minSdkVersion mini_sdk_version
         targetSdkVersion compile_sdk_version
-        versionCode 1
-        versionName "1.0"
+        versionCode version_code
+        versionName version_name
 
         testInstrumentationRunner test_runner
 
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
+    //Default
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':data')
-
+    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //https://github.com/google/dagger
+    //RxAndroid RxJava2: Reuse api data layer
+    //implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    //implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    // Dagger
     implementation "com.google.dagger:dagger:$dagger2_vesion"
     implementation "com.google.dagger:dagger-android:$dagger2_vesion"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_vesion"
     kapt "com.google.dagger:dagger-compiler:$dagger2_vesion"
     kapt "com.google.dagger:dagger-android-processor:$dagger2_vesion"
-
-    implementation "com.google.code.gson:gson:$gson_version"
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    //Unit test
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"

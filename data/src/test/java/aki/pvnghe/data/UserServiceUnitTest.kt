@@ -1,10 +1,10 @@
 package aki.pvnghe.data
 
 import aki.pvnghe.data.model.User
-import aki.pvnghe.data.model.UsersList
-import aki.pvnghe.data.service.user.UserApi
-import aki.pvnghe.data.service.user.UserService
-import aki.pvnghe.data.service.user.UserServiceImpl
+import aki.pvnghe.data.service.getusers.GetUsersResponse
+import aki.pvnghe.data.service.getusers.UserApi
+import aki.pvnghe.data.service.getusers.UserService
+import aki.pvnghe.data.service.getusers.UserServiceImpl
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Before
@@ -17,7 +17,7 @@ import org.powermock.modules.junit4.PowerMockRunner
 
 
 @RunWith(PowerMockRunner::class)
-@PrepareForTest(UsersList::class, User::class)
+@PrepareForTest(GetUsersResponse::class, User::class)
 class UserServiceUnitTest {
 
     private val USER_LOGIN_NGHEPHAMVAN = "nghephamvan"
@@ -30,7 +30,7 @@ class UserServiceUnitTest {
     lateinit var userApi: UserApi
 
     @Mock
-    lateinit var usersList: UsersList
+    lateinit var usersList: GetUsersResponse
 
     @Mock
     lateinit var user: User
@@ -62,7 +62,7 @@ class UserServiceUnitTest {
     fun `should map user`() {
         val observer = TestObserver<User>()
         userService.getUser(USER_LOGIN_NGHEPHAMVAN)
-            .subscribe(observer)
+                .subscribe(observer)
         observer.assertNoErrors()
         observer.assertComplete()
         observer.assertValue(user)

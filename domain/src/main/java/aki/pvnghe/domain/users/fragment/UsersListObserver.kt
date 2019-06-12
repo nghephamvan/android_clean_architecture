@@ -1,6 +1,6 @@
-package aki.pvnghe.unittestapi.users.fragment
+package aki.pvnghe.domain.users.fragment
 
-import aki.pvnghe.domain.model.User
+import aki.pvnghe.data.model.User
 import io.reactivex.observers.DisposableSingleObserver
 
 class UsersListObserver(private val presenter: UsersPresenter) : DisposableSingleObserver<List<User>>() {

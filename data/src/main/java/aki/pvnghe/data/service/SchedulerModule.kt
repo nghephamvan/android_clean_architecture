@@ -1,4 +1,4 @@
-package aki.pvnghe.domain.usecase.module
+package aki.pvnghe.data.service
 
 import dagger.Module
 import dagger.Provides
@@ -7,12 +7,11 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module
-class UseCaseModule {
+class SchedulerModule {
     companion object {
         const val RX_IO_SCHEDULER = "ioScheduler"
         const val RX_MAIN_THREAD_SCHEDULER = "mainThreadScheduler"
     }
-
 
     @Provides
     @Named(RX_IO_SCHEDULER)

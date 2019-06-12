@@ -1,6 +1,8 @@
 package aki.pvnghe.unittestapi.users.fragment
 
-import aki.pvnghe.domain.model.User
+import aki.pvnghe.data.model.User
+import aki.pvnghe.domain.users.fragment.UsersPresenter
+import aki.pvnghe.domain.users.fragment.UsersView
 import aki.pvnghe.unittestapi.R
 import aki.pvnghe.unittestapi.baseview.BaseFragment
 import android.support.v7.widget.LinearLayoutManager

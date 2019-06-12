@@ -12,19 +12,8 @@ import retrofit2.http.Query
 import javax.inject.Inject
 
 interface UserApi {
-    @GET("/search/users?per_page=10")
+    @GET("/search/users?per_page=100")
     fun searchGithubUsers(@Query("q") searchTerm: String?): Single<GetUsersResponse>
-}
-
-interface UserService {
-    fun searchUsers(searchTerm: String?): Single<List<User>>
-}
-
-class UserServiceImpl @Inject constructor(private val mUserApi: UserApi) : UserService {
-    override fun searchUsers(searchTerm: String?): Single<List<User>> = mUserApi.searchGithubUsers(searchTerm = searchTerm)
-            .map {
-                it.items
-            }
 }
 
 class SearchUsersService @Inject constructor(

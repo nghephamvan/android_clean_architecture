@@ -1,8 +1,8 @@
 package aki.pvnghe.unittestapi
 
 import aki.pvnghe.domain.model.User
-import aki.pvnghe.unittestapi.users.fragment.UsersListObserver
-import aki.pvnghe.unittestapi.users.fragment.UsersPresenter
+import aki.pvnghe.domain.users.fragment.UsersListObserver
+import aki.pvnghe.domain.users.fragment.UsersPresenter
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

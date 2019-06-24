@@ -1,5 +1,6 @@
 package aki.pvnghe.unittestapi.baseview
 
+import aki.pvnghe.domain.BasePresenter
 import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -20,6 +21,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
     private fun initPresenter() {
         presenter.attachView(this)
         presenter.initialise()
+        initialiseView()
     }
 
     override fun onDestroy() {
@@ -27,4 +29,6 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
         presenter.detachView()
         super.onDestroy()
     }
+
+    abstract fun initialiseView()
 }

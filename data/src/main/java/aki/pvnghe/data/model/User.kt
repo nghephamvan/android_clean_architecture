@@ -1,5 +1,6 @@
 package aki.pvnghe.data.model
 
+import android.net.Uri
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
@@ -112,4 +113,6 @@ open class User(
     constructor(userLogin: String) : this() {
         this.login = userLogin
     }
+
+    fun avatarUri(): Uri? = Uri.parse(avatarUrl)
 }

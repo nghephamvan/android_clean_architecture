@@ -2,12 +2,11 @@ package aki.pvnghe.unittestapi.di.module
 
 import aki.pvnghe.data.scope.ActivityScope
 import aki.pvnghe.data.scope.FragmentScope
-import aki.pvnghe.domain.usecase.module.UseCaseModule
 import aki.pvnghe.unittestapi.App
 import aki.pvnghe.unittestapi.users.activity.MainActivity
 import aki.pvnghe.unittestapi.users.fragment.UsersFragment
-import aki.pvnghe.unittestapi.users.module.MainActivityModule
-import aki.pvnghe.unittestapi.users.module.UsersFragmentModule
+import aki.pvnghe.domain.users.module.MainActivityModule
+import aki.pvnghe.domain.users.module.UsersFragmentModule
 import android.app.Application
 import dagger.Binds
 import dagger.Module
@@ -28,6 +27,6 @@ abstract class AppModule {
     internal abstract fun contributeActivityInjector(): MainActivity
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [UsersFragmentModule::class, UseCaseModule::class])
+    @ContributesAndroidInjector(modules = [UsersFragmentModule::class])
     internal abstract fun contributeFragmentInjector(): UsersFragment
 }

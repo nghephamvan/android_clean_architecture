@@ -1,9 +1,8 @@
-package aki.pvnghe.unittestapi.users.fragment
+package aki.pvnghe.domain.users.fragment
 
-import aki.pvnghe.domain.model.User
+import aki.pvnghe.data.model.User
 
 interface UsersView {
-    fun initialiseView()
     fun showUserList(users: List<User>)
     fun showProgress(show: Boolean)
     fun showError(errorMessage: String)

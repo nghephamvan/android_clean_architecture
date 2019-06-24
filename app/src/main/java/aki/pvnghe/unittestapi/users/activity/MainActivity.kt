@@ -1,5 +1,7 @@
 package aki.pvnghe.unittestapi.users.activity
 
+import aki.pvnghe.domain.users.activity.MainPresenter
+import aki.pvnghe.domain.users.activity.MainView
 import aki.pvnghe.unittestapi.baseview.BaseActivity
 import aki.pvnghe.unittestapi.R
 import aki.pvnghe.unittestapi.users.fragment.UsersFragment

@@ -1,5 +1,6 @@
 package aki.pvnghe.unittestapi.baseview
 
+import aki.pvnghe.domain.BasePresenter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ abstract class BaseFragment<P : BasePresenter<Any>> : DaggerFragment() {
     private fun initPresenter() {
         presenter.attachView(this)
         presenter.initialise()
+        initialiseView()
     }
 
     override fun onDestroy() {
@@ -33,5 +35,7 @@ abstract class BaseFragment<P : BasePresenter<Any>> : DaggerFragment() {
         presenter.detachView()
         super.onDestroy()
     }
+
+    abstract fun initialiseView()
 
 }

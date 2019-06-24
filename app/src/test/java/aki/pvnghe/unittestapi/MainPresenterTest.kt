@@ -1,7 +1,7 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.unittestapi.users.activity.MainPresenter
-import aki.pvnghe.unittestapi.users.activity.MainView
+import aki.pvnghe.domain.users.activity.MainPresenter
+import aki.pvnghe.domain.users.activity.MainView
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

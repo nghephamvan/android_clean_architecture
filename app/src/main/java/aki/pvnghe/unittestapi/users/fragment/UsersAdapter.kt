@@ -1,7 +1,6 @@
 package aki.pvnghe.unittestapi.users.fragment
 
-import aki.pvnghe.domain.model.User
-import aki.pvnghe.domain.model.avatarUri
+import aki.pvnghe.data.model.User
 import aki.pvnghe.unittestapi.R
 import aki.pvnghe.unittestapi.di.module.GlideApp
 import android.content.Context

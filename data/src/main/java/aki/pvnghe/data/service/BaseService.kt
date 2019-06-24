@@ -1,4 +1,4 @@
-package aki.pvnghe.domain.usecase
+package aki.pvnghe.data.service
 
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -6,8 +6,8 @@ import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class UseCase<T, in Params>(private val subscribeScheduler: Scheduler,
-                                     private val postExecutionScheduler: Scheduler) {
+abstract class BaseService<T, in Params>(private val subscribeScheduler: Scheduler,
+                                         private val postExecutionScheduler: Scheduler) {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 

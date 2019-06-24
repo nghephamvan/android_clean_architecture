@@ -1,7 +1,7 @@
-package aki.pvnghe.unittestapi.users.module
+package aki.pvnghe.domain.users.module
 
 import aki.pvnghe.data.scope.ActivityScope
-import aki.pvnghe.unittestapi.users.activity.MainPresenter
+import aki.pvnghe.domain.users.activity.MainPresenter
 import dagger.Module
 import dagger.Provides
 

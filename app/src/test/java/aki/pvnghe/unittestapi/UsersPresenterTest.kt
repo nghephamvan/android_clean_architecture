@@ -1,14 +1,13 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.domain.usecase.GetUsersListUseCase
+import aki.pvnghe.data.service.getusers.SearchUsersService
 import aki.pvnghe.domain.model.User
-import aki.pvnghe.unittestapi.users.fragment.UsersListObserver
-import aki.pvnghe.unittestapi.users.fragment.UsersPresenter
-import aki.pvnghe.unittestapi.users.fragment.UsersView
+import aki.pvnghe.domain.users.fragment.UsersListObserver
+import aki.pvnghe.domain.users.fragment.UsersPresenter
+import aki.pvnghe.domain.users.fragment.UsersView
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -17,7 +16,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
 
 @RunWith(PowerMockRunner::class)
-@PrepareForTest(GetUsersListUseCase::class)
+@PrepareForTest(SearchUsersService::class)
 class UsersPresenterTest {
     private lateinit var presenter: UsersPresenter
 
@@ -28,14 +27,14 @@ class UsersPresenterTest {
     }
 
     @Mock
-    lateinit var getUsersListUseCase: GetUsersListUseCase
+    lateinit var searchUsersService: SearchUsersService
 
     @Mock
     lateinit var view: UsersView
 
     @Before
     fun setUp() {
-        presenter = UsersPresenter(getUsersListUseCase)
+        presenter = UsersPresenter(searchUsersService)
         presenter.attachView(view)
     }
 
@@ -48,13 +47,13 @@ class UsersPresenterTest {
     @Test
     fun `should dispose subscription`() {
         presenter.disposeSubscriptions()
-        verify(getUsersListUseCase).dispose()
+        verify(searchUsersService).dispose()
     }
 
     @Test
     fun `should execute usecase when initialise is invoked`() {
         presenter.initialise()
-        verify(getUsersListUseCase).execute(any(UsersListObserver::class.java), anyString())
+        verify(searchUsersService).execute(any(UsersListObserver::class.java), anyString())
     }
 
     @Test

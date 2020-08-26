@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.transition.Fade
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -87,7 +86,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
 
 
     protected fun addFragmentWithSlideAnimationLeftRight(@IdRes containerViewId: Int, fragment: Fragment) {
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(containerViewId, fragment, fragment.javaClass.simpleName)
                 .addToBackStack(null)
@@ -96,7 +95,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
 
     @SuppressLint("ResourceType")
     protected fun addFragmentWithSlideAnimationUpDown(@IdRes containerViewId: Int, fragment: Fragment) {
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_bottom, R.anim.not_doing, R.anim.not_doing, R.anim.slide_out_bottom)
                 .replace(containerViewId, fragment, fragment.javaClass.simpleName)
                 .addToBackStack(null)
@@ -104,7 +103,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
     }
 
     protected fun addFragmentWithOutReplaceLeftRight(@IdRes containerViewId: Int, fragment: Fragment) {
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left, R.animator.slide_in_left, R.animator.slide_out_right)
                 .add(containerViewId, fragment, fragment.javaClass.simpleName)
                 .addToBackStack(null)
@@ -113,7 +112,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : DaggerAppCompatActivity() 
 
     @SuppressLint("ResourceType")
     protected fun addFragmentWithOutReplaceUpDown(@IdRes containerViewId: Int, fragment: Fragment) {
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_bottom, R.anim.not_doing, R.anim.not_doing, R.anim.slide_out_bottom)
                 .add(containerViewId, fragment, fragment.javaClass.simpleName)
                 .addToBackStack(null)

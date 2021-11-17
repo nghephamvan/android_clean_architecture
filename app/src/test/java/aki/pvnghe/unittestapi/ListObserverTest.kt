@@ -1,6 +1,6 @@
 package aki.pvnghe.unittestapi
 
-import aki.pvnghe.domain.model.User
+import aki.pvnghe.data.model.User
 import aki.pvnghe.domain.users.fragment.UsersListObserver
 import aki.pvnghe.domain.users.fragment.UsersPresenter
 import org.junit.Before

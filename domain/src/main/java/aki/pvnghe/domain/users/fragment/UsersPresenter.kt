@@ -9,6 +9,7 @@ import javax.inject.Inject
 class UsersPresenter @Inject constructor(private val searchUsersService: SearchUsersService) : BasePresenter<UsersView>() {
 
     override fun initialise() {
+        getView()?.initialiseView()
         searchUsersService.execute(observer = UsersListObserver(this), params = "nghe")
     }
 

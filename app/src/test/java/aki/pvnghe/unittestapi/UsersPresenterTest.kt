@@ -1,7 +1,7 @@
 package aki.pvnghe.unittestapi
 
+import aki.pvnghe.data.model.User
 import aki.pvnghe.data.service.getusers.SearchUsersService
-import aki.pvnghe.domain.model.User
 import aki.pvnghe.domain.users.fragment.UsersListObserver
 import aki.pvnghe.domain.users.fragment.UsersPresenter
 import aki.pvnghe.domain.users.fragment.UsersView

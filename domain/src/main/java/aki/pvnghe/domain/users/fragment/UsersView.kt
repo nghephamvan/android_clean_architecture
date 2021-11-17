@@ -6,4 +6,5 @@ interface UsersView {
     fun showUserList(users: List<User>)
     fun showProgress(show: Boolean)
     fun showError(errorMessage: String)
+    fun initialiseView()
 }
